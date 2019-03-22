@@ -1,0 +1,42 @@
+<!--
+  Generated template for the SettingsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Settings</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-list-header>
+      <ion-avatar item-start>
+        <div class="circularBtn" style="margin-right: 10px">
+          <img [style.background-image]="headerImage">
+        </div>
+      </ion-avatar>
+      <p color="graycolor" *ngIf="userData">{{userData.username}}</p>
+      <p color="graycolor" *ngIf="userData">{{userData.email}}</p>
+    </ion-list-header>
+  </ion-list>
+
+  <ion-list no-border>
+    <ion-item>
+      <ion-icon name="settings" color="graycolor" item-start></ion-icon>
+      <ion-label color="graycolor">Change Password</ion-label>
+      <button item-end clear ion-button color="primary" (click)="ChangePasswordPage()">
+        Change
+      </button>
+    </ion-item>
+    <br>
+    <ion-item>
+      <ion-icon name="log-out" color="graycolor" item-start></ion-icon>
+      <button ion-button block class="md-raised md-button" style="height: 40px !important; font-size: 15px !important;" color="danger" (click)="Logout()">
+        Logout
+      </button>
+    </ion-item>
+  </ion-list>
+</ion-content>

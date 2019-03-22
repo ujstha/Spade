@@ -1,0 +1,30 @@
+page-index {
+    background: #348F53 !important;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #56B4D3, #348F53) !important;  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #56B4D3, #348F53) !important;
+    font-family: 'Raleway', sans-serif;
+    .skipBtn {
+        position: fixed;
+        top: 17px;
+        right: 15px;
+        font-size: 18px;
+        font-family: 'Raleway', sans-serif;
+    }
+    h1 {
+        font-family: 'Srisakdi', cursive;
+        font-size: 40px;
+        font-weight: bold;
+        margin: 0;
+        padding: 0;
+    }
+    h3{
+        margin: 0;
+    }
+    .swiper-container {
+        max-height: 80%;
+        top: 10%;
+    }
+    strong {
+        font-family: 'Srisakdi', cursive; font-weight: 700; font-size: 18px;
+    }
+}

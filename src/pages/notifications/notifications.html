@@ -1,0 +1,36 @@
+<!--
+  Generated template for the NotificationsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="toolbar_header">
+  <ion-toolbar>
+    <ion-navbar>
+      <ion-title>Notifications</ion-title>
+    </ion-navbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="alert-card" *ngFor="let notification of notifications">
+    <ion-item class="">
+      <ion-avatar class="ionAvatar" item-start>
+        <img src="http://res.cloudinary.com/doo4zgtkg/image/upload/v{{notification.senderId.picVersion}}/{{notification.senderId.picId}}">
+      </ion-avatar>
+      <p text-wrap class="msg">{{notification.message}}</p>
+      <p class="postTime">{{GetTime(notification.created)}}</p>
+      <ion-row>
+        <ion-col col>
+          <button ion-button icon-left clear (click)="MarkNotifications(notification)">
+            <ion-icon name="checkmark" *ngIf="!notification.read"></ion-icon>
+            <ion-icon name="done-all" *ngIf="notification.read" class="read"></ion-icon>
+          </button>
+          <button ion-button icon-left clear (click)="DeleteNotifications(notification)">
+            <ion-icon name="trash"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+  </ion-card>
+</ion-content>

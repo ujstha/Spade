@@ -1,0 +1,76 @@
+page-register {
+  font-family: 'Raleway', sans-serif;
+  .sign {
+    background: #348F50;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #56B4D3, #348F50);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #56B4D3, #348F50);
+    text-align: center;
+  }
+  .logo {
+    margin-top: 32%;
+    h1 {
+      font-size: 40px;
+      font-family: 'Srisakdi', cursive;
+      font-weight: bold;
+      text-align: center;
+      margin: 0 auto;
+      color: color($colors, color4);
+      text-transform: uppercase;
+    }
+    p {
+      margin: 0px;
+      color: color($colors, color4);
+      @include whiteNormal(15px, 1);
+    }
+  }
+  .signin {
+    margin: 0px;
+    color: color($colors, light);
+    @include whiteNormal(24px, 1);
+    display: inline;
+  }
+
+  .scroll-content {
+    overflow: hidden !important;
+  }
+
+  input {
+    @include placeholder {
+      color: color($colors, graycolor) !important;
+    }
+  }
+
+  .login-button {
+    background: #56B4D3;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #348F53, #56B4D3);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #348F53, #56B4D3);/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    margin-top: 15px;
+    max-width: 98%;
+    text-transform: uppercase;
+  }
+
+  .text-input::-moz-placeholder {
+    color: color($colors, graycolor) !important;
+  }
+  p {
+    color: whitesmoke !important;
+  }
+
+  .text-input:-ms-input-placeholder {
+    color: color($colors, graycolor) !important;
+  }
+
+  .text-input::-webkit-input-placeholder {
+    color: color($colors, graycolor) !important;
+  }
+}
+
+.alertCss {
+  .alert-title {
+    color: red !important;
+  }
+
+  .alert-sub-title {
+    font-size: 18px !important;
+  }
+}

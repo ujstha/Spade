@@ -1,0 +1,66 @@
+<!--
+  Generated template for the IndexPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<a class="skipBtn" (click)="Skip()">Skip</a>
+
+<ion-slides #SwipedTabsSlider [pager]="true">
+  <ion-slide>
+    <h3 style="font-family: 'Srisakdi', cursive">Intro to</h3>
+    <h1>SP<img src="../../assets/imgs/logo.png" style="width: 40px; height: 40px; vertical-align: middle; filter: brightness(500%)"/>DE</h1>
+    <p class="subtitle">A social media app with Login System, Chat functionality, Adding posts and Push Notification System.</p>
+    <p>Created By: <strong>Ujjawal Shrestha</strong></p>
+  </ion-slide>
+
+  <ion-slide>
+    <h3 style="font-family: 'Srisakdi', cursive">The Project</h3>
+    <p>This app was created as a part of the project assignment for Mobile Internet Programming Course.</p>
+    <p>Assigned By: <strong>Mr. Janne Kumpuoja</strong></p>
+  </ion-slide>
+
+  <ion-slide>
+      <h3 style="font-family: 'Srisakdi', cursive">Special Thanks</h3>
+      <p>
+        This app was built with the help of the online course provided by <strong>Mr. Uzochukwu Eddie Odozi.</strong> The course was available in UDEMY.
+      </p>
+      <p>There is also hands of youtube tutorial videos and documentations/articles in the successful making of <strong style="font-family: 'Srisakdi', cursive; font-weight: 700">SP<img src="../../assets/imgs/logo.png" style="width: 20px; height: 20px; vertical-align: middle; filter: brightness(500%)"/>DE</strong> app.</p>
+  </ion-slide>
+
+  <ion-slide>
+      <h3 style="font-family: 'Srisakdi', cursive">Technologies</h3>
+      <p>
+        Programming languages and technologies used for developing this app are listed below:
+      </p>
+      <div style="text-align: left; max-width: 80%; width: 80%; padding-left: 30px;">
+        <p>Frontend: <strong>Cordova</strong>
+          <br>
+          Frontend UI: <strong>Ionic Framework</strong>
+          <br>
+          Backend Server: <strong>ExpressJS</strong> 
+          <br>
+          Database: <strong>MongoDB - MLab</strong>
+          <br>
+          Image Upload: <strong>Cloudinary</strong>
+          <br>
+          Backend Deploy: <strong>Heroku</strong>
+          <br>
+          Realtime: <strong>Socket.io</strong>
+          <br>
+          Authentication: <strong>jsonwebtoken</strong>
+          <br>
+          Validation: <strong>Joi</strong>
+        </p>
+      </div>
+  </ion-slide>
+  <ion-slide>
+    <button ion-button color="dark" (click)="Skip()">Get Started by <br>Logging In or Signing Up</button>
+  </ion-slide>
+</ion-slides>
+<div style="width: 100%; text-align: center; bottom: 1px; position: fixed;">
+  <p style="font-family: 'Srisakdi', cursive; font-weight: 400; font-size: 5px">
+    {{today | date:'yyyy'}} &copy; SP<img src="../../assets/imgs/logo.png" style="width: 20px; height: 20px; vertical-align: middle; filter: brightness(500%)"/>DE
+  </p>
+</div>
+

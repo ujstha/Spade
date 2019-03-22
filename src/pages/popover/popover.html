@@ -1,0 +1,10 @@
+<!--
+  Generated template for the PopoverPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-list>
+  <button ion-item *ngIf="!following" (click)="Follow()">Follow</button>
+  <button ion-item *ngIf="following" (click)="Unfollow()">Unfollow</button>
+</ion-list>

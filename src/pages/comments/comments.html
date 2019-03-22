@@ -1,0 +1,57 @@
+<!--
+  Generated template for the CommentsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Comments</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-grid class="commentList"> 
+    <ion-row>
+      <ion-list>
+        <ion-item *ngFor="let comment of commentsArray">
+          <ion-avatar item-left>
+            <img class="circle imgCircle" src="http://res.cloudinary.com/doo4zgtkg/image/upload/v{{comment.userId.picVersion}}/{{comment.userId.picId}}">
+          </ion-avatar>
+          <h2 class="username">
+            {{comment.userId.username}}
+          </h2>
+          <p class="postTime">
+            {{GetCommentTime(comment.createdAt)}}
+          </p>
+          <p class="comment">
+            {{comment.comment}}
+          </p>
+        </ion-item>
+      </ion-list>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-row>
+    <ion-col col-12>
+      <ion-item>
+        <ion-textarea class="message" [(ngModel)]="comment" placeholder="Write Comments here...."></ion-textarea>
+        <button class="emojiBtn" ion-button clear item-end (click)="Toggled()">😄</button>
+        <div class="emoji-content-editable" (emojiPickerCaretEmitter)="HandleCurrentCaret($event)" (input)="content = $event.target.textContent"
+          [textContent]="content" contenteditable="true"></div>
+      </ion-item>
+    </ion-col>
+    <ion-col col-12>
+      <button class="commentButton" ion-button block (click)="AddComment()">
+        Add Comment
+      </button>
+      <div>
+        <button class="emoji-toggle-button imgBtn" ion-button clear item-end [(emojiPickerIf)]="toggled" [emojiPickerDirection]="direction"
+          (emojiPickerSelect)="HandleSelection($event)"></button>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-footer>

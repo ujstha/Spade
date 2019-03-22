@@ -1,0 +1,14 @@
+{
+  "name": "Spade",
+  "short_name": "Spade",
+  "start_url": "index.html",
+  "theme_color": "#348f53",
+  "background_color": "#56b4d3",
+  "display": "standalone",
+  "icons": [{
+    "src": "assets/imgs/logo.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }],
+  "Scope": "/"
+}
