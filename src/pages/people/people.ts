@@ -19,8 +19,12 @@ import _ from 'lodash';
 })
 export class PeoplePage {
   peoples = [];
-  socket: any;
   token: any;
+  socket: any;
+  userData: any;
+  userprofile: string;
+  headerImage: any;
+  userImages: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private usersProvider: UsersProvider, private tokenProvider: TokenProvider) {
     this.socket = io('http://hakunamatata-server.herokuapp.com');
@@ -31,14 +35,30 @@ export class PeoplePage {
     this.tokenProvider.GetPayload().then(value => {
       this.token = value;
       this.GetUsers(this.token.username);
+      this.GetUser(this.token._id);
     });
 
     this.socket.on('refreshPage', () => {
       this.tokenProvider.GetPayload().then(value => {
         this.token = value;
         this.GetUsers(this.token.username);
+        this.GetUser(this.token._id);
       });
     });
+  }
+
+  GetUser(id) {
+    this.usersProvider.GetUserById(id).subscribe(data => {
+      this.userData = data.result;
+      this.UserImage(this.userData);
+      this.userImages = { hasImages: true, user: this.userData };
+    });
+  }
+  UserImage(obj) {
+    const imgUrl = `http://res.cloudinary.com/doo4zgtkg/image/upload/v${
+      obj.picVersion
+    }/${obj.picId}`;
+    this.headerImage = imgUrl;
   }
 
   GetUsers(name) {

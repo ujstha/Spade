@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 import { PostProvider } from '../../providers/post/post';
 import moment from 'moment';
 import { TokenProvider } from '../../providers/token/token';
 import _ from 'lodash';
 import io from 'socket.io-client';
+import { UsersProvider } from '../../providers/users/users';
 
 /**
  * Generated class for the NewsfeedPage page.
@@ -24,8 +25,13 @@ export class NewsfeedPage {
   socket: any;
   user: any;
   topNewsfeedArray = [];
+  token: any;
+  userData: any;
+  userprofile: string;
+  headerImage: any;
+  userImages: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private modalCtrl: ModalController, private postProvider: PostProvider, private tokenProviders: TokenProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public menuCtrl: MenuController, private usersProvider: UsersProvider, private postProvider: PostProvider, private tokenProviders: TokenProvider) {
     this.newsfeeds = 'post';
     this.socket = io('http://hakunamatata-server.herokuapp.com');
   }
@@ -34,12 +40,32 @@ export class NewsfeedPage {
     //console.log('ionViewDidLoad NewsfeedPage'); this function is a lifecycle event
     this.tokenProviders.GetPayload().then(value => {
       this.user = value;
+      this.token = value;
+      this.GetUser(this.token._id);
     });
     this.GetAllPosts();
 
     this.socket.on('refreshPage', () => {
       this.GetAllPosts();
+      this.tokenProviders.GetPayload().then(value => {
+        this.token = value;
+        this.GetUser(this.token._id);
+      });
     });
+  }
+
+  GetUser(id) {
+    this.usersProvider.GetUserById(id).subscribe(data => {
+      this.userData = data.result;
+      this.UserImage(this.userData);
+      this.userImages = { hasImages: true, user: this.userData };
+    });
+  }
+  UserImage(obj) {
+    const imgUrl = `http://res.cloudinary.com/doo4zgtkg/image/upload/v${
+      obj.picVersion
+    }/${obj.picId}`;
+    this.headerImage = imgUrl;
   }
 
   GetAllPosts() {
@@ -67,10 +93,10 @@ export class NewsfeedPage {
     this.navCtrl.push('CommentsPage', { post });
   }
 
-  PostModal() {
+  /*PostModal() {
     let modal = this.modalCtrl.create('PostPage');
     modal.present();
-  }
+  }*/
 
   CheckInLikesArray(arr, username) {
     return _.some(arr, { username: username });
@@ -78,5 +104,9 @@ export class NewsfeedPage {
 
   GetPostTime(time) {
     return moment(time).fromNow();
+  }
+
+  toggleMenu() {
+    this.menuCtrl.toggle();
   }
 }

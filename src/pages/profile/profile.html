@@ -7,10 +7,6 @@
 <ion-header no-border class="toolbar_header">
   <ion-toolbar>
     <ion-navbar>
-      <ion-title class="titleBtn" *ngIf="userData">
-        {{userData.username}}
-      </ion-title>
-  
       <ion-buttons end>
         <button ion-button icon-only (click)="SettingsPage()">
           <ion-icon name="settings"></ion-icon>
@@ -26,9 +22,12 @@
     <div class="circularBtn">
       <img [style.background-image]="headerImage">
     </div>
-    <h2 *ngIf="userData">{{userData.username}}</h2>
-    <p *ngIf="userData">{{userData.city}}
-      <span>&bull;</span> {{userData.country}}</p>
+    <div class="detail">
+      <h2 *ngIf="userData">{{userData.username}}</h2>
+      <p *ngIf="userData">{{userData.city}}
+        <span>&bull;</span> {{userData.country}}
+      </p>
+    </div>
   </div>
   <div [(ngModel)]="userprofile">
     <ion-segment color="primary" (ionChange)="SegmentChanged($event)">

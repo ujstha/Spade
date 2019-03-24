@@ -8,7 +8,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Camera } from '@ionic-native/camera';
 import { IonicStorageModule } from '@ionic/storage';
+
 import { MyApp } from './app.component';
+
 import { AuthProvider } from '../providers/auth/auth';
 import { TokenProvider } from '../providers/token/token';
 import { TokenInterceptor } from '../providers/token-interceptor';

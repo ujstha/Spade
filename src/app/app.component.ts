@@ -12,8 +12,9 @@ import io from 'socket.io-client';
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
+  rootPage:string = 'TabsPage';
   socket: any;
-
+  
   //rootPage:any = IndexPage;  --use this if imported
   //rootPage:string = 'LoginPage'; -for lazyloading the pages use type string and class name
 
@@ -36,7 +37,7 @@ export class MyApp {
             };
             this.socket.emit('online', params);
           });
-          this.nav.setRoot('TabsPage');
+          this.nav.setRoot('MenuPage');
         } else {
           this.nav.setRoot('IndexPage');
         }

@@ -21,6 +21,11 @@ export class NotificationsPage {
   payload: any;
   socket: any;
   notifications = [];
+  token: any;
+  userData: any;
+  userprofile: string;
+  headerImage: any;
+  userImages: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private usersProvider: UsersProvider, private tokenProvider: TokenProvider) {
     this.socket = io('http://hakunamatata-server.herokuapp.com');
@@ -30,13 +35,17 @@ export class NotificationsPage {
     //console.log('ionViewDidLoad NotificationsPage');
     this.tokenProvider.GetPayload().then(value => {
       this.payload = value;
+      this.token = value;
       this.GetUser(this.payload._id);
+      this.GetUser(this.token._id);
     });
 
     this.socket.on('refreshPage', () => {
       this.tokenProvider.GetPayload().then(value => {
         this.payload = value;
+        this.token = value;
         this.GetUser(this.payload._id);
+        this.GetUser(this.token._id);
       });
     });
   }
@@ -44,7 +53,17 @@ export class NotificationsPage {
   GetUser(id) {
     this.usersProvider.GetUserById(id).subscribe(data => {
       this.notifications = data.result.notifications.reverse();
+      this.userData = data.result;
+      this.UserImage(this.userData);
+      this.userImages = { hasImages: true, user: this.userData };
     });
+  }
+
+  UserImage(obj) {
+    const imgUrl = `http://res.cloudinary.com/doo4zgtkg/image/upload/v${
+      obj.picVersion
+    }/${obj.picId}`;
+    this.headerImage = imgUrl;
   }
 
   MarkNotifications(value) {

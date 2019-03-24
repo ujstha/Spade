@@ -5,19 +5,21 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-toolbar class="tabs_bar">
-    <ion-segment [(ngModel)]="newsfeeds">
-      <ion-segment-button value="post">
-        Newsfeed
-      </ion-segment-button>
-      <ion-segment-button value="top">
-        Top Newsfeed
-      </ion-segment-button>
-    </ion-segment>
-  </ion-toolbar>
+  <div class="menubtn">
+    <img *ngIf="userData" src={{headerImage}} menuToggle style="float: left; background-color: white;">
+    <div style="float: left; margin-top: 5px; margin-left: 15px; font-size: 20px; color: white;">Home</div>
+  </div>
 </ion-header>
 
 <ion-content class="content">
+  <ion-segment [(ngModel)]="newsfeeds">
+    <ion-segment-button value="post">
+      Newsfeed
+    </ion-segment-button>
+    <ion-segment-button value="top">
+      Top Newsfeed
+    </ion-segment-button>
+  </ion-segment>
   <div [ngSwitch]="newsfeeds"> <!-- to switch between tabs ngSwitch is binded -->
     <ion-list *ngSwitchCase="'post'"><!-- post is added as a string hence two quotes, ngSwitchCase is used as directive so * sign used-->
       <ion-item class="content-item1" *ngFor="let newsfeed of newsfeedArray">
@@ -102,9 +104,13 @@
     </ion-list>
   </div>
 
-  <ion-fab right bottom fixed>
+  <!--<ion-fab right bottom fixed>
     <button ion-fab color="danger" (click)="PostModal()">
       <ion-icon name="add"></ion-icon>
     </button>
-  </ion-fab>
+  </ion-fab>-->
 </ion-content>
+
+<ion-footer>
+    
+</ion-footer>

@@ -23,10 +23,14 @@ export class ChatListPage {
   token: any;
   socket: any;
   chatListArray = [];
+  userData: any;
+  userprofile: string;
+  headerImage: any;
+  userImages: any; 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private tokenProvider: TokenProvider, private usersProvider: UsersProvider, private messageProvider: MessageProvider) {
     this.socket = io('http://hakunamatata-server.herokuapp.com');
-  }
+  } 
 
   ionViewDidLoad() {
     //console.log('ionViewDidLoad ChatListPage');
@@ -46,7 +50,17 @@ export class ChatListPage {
   GetUser(id) {
     this.usersProvider.GetUserById(id).subscribe(data => {
       this.chatListArray = data.result.chatList;
+      this.userData = data.result;
+      this.UserImage(this.userData);
+      this.userImages = { hasImages: true, user: this.userData };
     });
+  }
+
+  UserImage(obj) {
+    const imgUrl = `http://res.cloudinary.com/doo4zgtkg/image/upload/v${
+      obj.picVersion
+    }/${obj.picId}`;
+    this.headerImage = imgUrl;
   }
 
   ChatPage(chat) {//chat object from html

@@ -1,7 +1,7 @@
 page-newsfeed {
   font-family: 'Raleway', sans-serif;
   background-color: whitesmoke;
-  ion-toolbar {
+  ion-content {
     .segment {
       .segment-button {
         height: $control-height - 10px;
@@ -10,13 +10,15 @@ page-newsfeed {
         color: #fff;
         border-radius: 0px !important;
         max-width: 100%;
-        background: transparent !important;
+        background: #348F53;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #56B4D3, #348F53);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #56B4D3, #348F53);
         font-family: 'Raleway', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
           'Lucida Sans', Arial, sans-serif;
       }
       .segment-activated {
         background: #348F58 !important;
-        border-bottom: 2px solid color($colors, color2);
+        border-bottom: 2px solid #348F53;
       }
     }
     &.tabs_bar {
@@ -27,6 +29,16 @@ page-newsfeed {
         background: linear-gradient(to right, #56B4D3, #348F53);/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
       }
     }
+  }
+  .header {
+    height: $control-height;
+    background: #348F53;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #56B4D3, #348F53);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #56B4D3, #348F53);
+  }
+  .menubtn {
+    margin-left: 10px !important;
+    margin-top: 3px !important;
   }
   .content {
     background: transparent;
@@ -125,5 +137,15 @@ page-newsfeed {
   .content {
     overflow-x: hidden;
     overflow-y: scroll !important;
+  }
+  div.menubtn img {
+    width: 35px;
+    height: 35px;
+    max-width: 35px;
+    max-height: 35px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border:  1px solid whitesmoke;
   }
 }

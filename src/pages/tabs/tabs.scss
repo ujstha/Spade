@@ -5,6 +5,13 @@ page-tabs {
         background: #348F53 !important;  /* fallback for old browsers */
         background: -webkit-linear-gradient(to right, #56B4D3, #348F53) !important;  /* Chrome 10-25, Safari 5.1-6 */
         background: linear-gradient(to right, #56B4D3, #348F53) !important;/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
+        height: $control-height;
+        a.tab-button[aria-selected=true]:nth-of-type(n) {
+            color: #99f2c8;
+            .tab-button-icon {
+                color: #99f2c8;
+            }
+        }
     }
     .tab-button-text {
         color: white;

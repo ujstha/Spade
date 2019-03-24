@@ -53,7 +53,7 @@ export class LoginPage {
           setTimeout(() => {
             this.loader.dismiss();
             //if token provider placed here token will be set after redirecting to another page.
-            this.navCtrl.setRoot('TabsPage');//instead of push method(creates back button), setRoot method sets redirected page as main page.
+            this.navCtrl.setRoot('MenuPage');//instead of push method(creates back button), setRoot method sets redirected page as main page.
           }, 2000);
         },
         err => {

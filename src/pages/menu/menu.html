@@ -1,0 +1,45 @@
+<ion-menu [content]="content">
+  <ion-list>
+    <div class="row">
+      <div class="col-12">
+        <div class="detail-pro">
+          <div class="list-btn" (click)="GoToProfile()" menuClose>
+            <ion-list-header>
+              <ion-avatar item-start>
+                <div class="menubtn">
+                  <img *ngIf="userData" src={{headerImage}}>
+                </div>
+              </ion-avatar>
+              <p color="graycolor" *ngIf="userData">{{userData.username}}</p>
+              <a href="#">View Profile</a>    
+            </ion-list-header>
+          </div>  
+          <div class="close-btn" menuClose>
+            <ion-icon name="close"></ion-icon>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <p *ngIf="userData">
+          <strong>{{userData.following.length}}</strong>  Following&nbsp;&nbsp;
+          <strong>{{userData.followers.length}}</strong>  Followers
+        </p>
+      </div>
+      <div style="border-bottom: 1px solid lightgrey; width: 100%;"></div>
+      <div class="col-12" style="border: 1px solid black; height: black;" (click)="GoToProfile()">
+        <p>
+          <ion-icon name="person"></ion-icon> &nbsp; Profile
+        </p>
+      </div>
+    </div>    
+    <!--
+    <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+      <ion-icon item-start [name]="p.icon" [color]="isActive(p)"></ion-icon>
+      {{ p.title }}
+    </button>
+    -->
+  </ion-list>
+</ion-menu>
+  
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

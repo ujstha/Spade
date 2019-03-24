@@ -112,6 +112,26 @@ page-people {
             }
         }
     }
+    .header {
+        height: $control-height;
+        background: #348F53;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #56B4D3, #348F53);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #56B4D3, #348F53);
+    }
+    .menubtn {
+        margin-left: 10px !important;
+        margin-top: 3px !important;
+    }
+    div.menubtn img {
+        width: 35px;
+        height: 35px;
+        max-width: 35px;
+        max-height: 35px;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border:  1px solid whitesmoke;
+    }
 
     @media only screen and (max-width: 767px) {
         .group {

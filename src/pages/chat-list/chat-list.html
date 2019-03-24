@@ -5,11 +5,10 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-toolbar>
-    <ion-navbar>
-      <ion-title>Chats</ion-title>
-    </ion-navbar>
-  </ion-toolbar>
+  <div class="menubtn-chat" >
+    <img *ngIf="userData" src={{headerImage}} menuToggle style="float: left; background-color: white;">
+    <div style="float: left; margin-top: 5px; margin-left: 15px; font-size: 20px; color: white;">Chats</div>
+  </div>
 </ion-header>
 <ion-content>
   <ion-card class="alert-card" *ngFor="let chat of chatListArray" (click)="ChatPage(chat)">

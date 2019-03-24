@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { UsersProvider } from '../../providers/users/users';
 import { TokenProvider } from '../../providers/token/token';
 import io from 'socket.io-client';
@@ -27,11 +27,11 @@ export class TabsPage {
   //tab activation
   tab1 = 'NewsfeedPage';
   tab2 = 'ChatListPage';
-  tab3 = 'PeoplePage';
+  tab3 = 'PostPage';
   tab4 = 'NotificationsPage';
-  tab5 = 'ProfilePage';
+  tab5 = 'PeoplePage';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private usersProvider: UsersProvider, private tokenProvider: TokenProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private modalCtrl: ModalController, private usersProvider: UsersProvider, private tokenProvider: TokenProvider) {
     this.socket = io('http://hakunamatata-server.herokuapp.com/');
   }
 
@@ -59,7 +59,7 @@ export class TabsPage {
       }
     });
   }
-
+  
   GetUser(id, username) {
     this.usersProvider.GetUserById(id).subscribe(data => {
       let msgArr = [];
@@ -81,5 +81,10 @@ export class TabsPage {
         }
       });
     });
+  }
+
+  PostModal() {
+    let modal = this.modalCtrl.create('PostPage');
+    modal.present();
   }
 }
