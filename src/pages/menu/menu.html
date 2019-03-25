@@ -20,17 +20,23 @@
         </div>
       </div>
       <div class="col-12">
-        <p *ngIf="userData">
-          <strong>{{userData.following.length}}</strong>  Following&nbsp;&nbsp;
-          <strong>{{userData.followers.length}}</strong>  Followers
+        <p *ngIf="userData" style="font-family: 'Srisakdi', cursive;">
+          <strong style="font-family: 'Raleway', sans-serif;">{{userData.following.length}}</strong>  Following&nbsp;&nbsp;
+          <strong style="font-family: 'Raleway', sans-serif;">{{userData.followers.length}}</strong>  Followers
         </p>
       </div>
       <div style="border-bottom: 1px solid lightgrey; width: 100%;"></div>
-      <div class="col-12" style="border: 1px solid black; height: black;" (click)="GoToProfile()">
-        <p>
+      <button ion-item style="padding-top: 12px; padding-bottom: 12px; font-size: 18px;" (click)="GoToProfile()" menuClose>
+        <div class="col-12">
           <ion-icon name="person"></ion-icon> &nbsp; Profile
-        </p>
-      </div>
+        </div>
+      </button>
+      <button ion-item style="padding-top: 12px; padding-bottom: 12px; font-size: 18px; margin-bottom: 8px;" (click)="SettingsPage()" menuClose>
+        <div class="col-12">
+          <ion-icon name="settings"></ion-icon> &nbsp; Settings
+        </div>
+      </button>
+      <div style="border-bottom: 1px solid lightgrey; width: 100%;"></div>
     </div>    
     <!--
     <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">

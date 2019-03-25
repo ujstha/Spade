@@ -80,6 +80,10 @@ export class MenuPage {
     this.navCtrl.push('ProfilePage');
   }
 
+  SettingsPage() {
+    this.navCtrl.push('SettingsPage');
+  }
+
   /*
   openPage(page: PageInterface) {
     this.nav.setRoot(page.pageName);

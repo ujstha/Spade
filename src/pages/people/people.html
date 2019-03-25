@@ -12,9 +12,9 @@
 </ion-header>
 
 <ion-content>
-  <ion-spinner name="cirlces" *ngIf="peoples == 0"></ion-spinner>
+  <ion-spinner name="cirlces" *ngIf="peoples.length == 0"></ion-spinner>
   <div class="group">
-    <ion-grid *ngIf="peoples != 0">
+    <ion-grid *ngIf="peoples.length != 0">
       <ion-row>
         <ion-col col-6 col-md-4 col-lg-3 col-xl-2 class="created_group" *ngFor="let people of peoples" (click)="ViewProfile(people)">
           <div class="container">
