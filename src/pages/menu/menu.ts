@@ -84,6 +84,10 @@ export class MenuPage {
     this.navCtrl.push('SettingsPage');
   }
 
+  Follow() {
+    this.navCtrl.push('FollowersPage');
+  }
+
   /*
   openPage(page: PageInterface) {
     this.nav.setRoot(page.pageName);

@@ -21,8 +21,8 @@
       </div>
       <div class="col-12">
         <p *ngIf="userData" style="font-family: 'Srisakdi', cursive;">
-          <strong style="font-family: 'Raleway', sans-serif;">{{userData.following.length}}</strong>  Following&nbsp;&nbsp;
-          <strong style="font-family: 'Raleway', sans-serif;">{{userData.followers.length}}</strong>  Followers
+          <a (click)="this.navCtrl.push('FollowingPage')" menuClose><strong style="font-family: 'Raleway', sans-serif;">{{userData.following.length}}</strong>  Following</a>&nbsp;&nbsp;
+          <a (click)="this.navCtrl.push('FollowersPage')" menuClose><strong style="font-family: 'Raleway', sans-serif;">{{userData.followers.length}}</strong>  Followers</a>
         </p>
       </div>
       <div style="border-bottom: 1px solid lightgrey; width: 100%;"></div>
