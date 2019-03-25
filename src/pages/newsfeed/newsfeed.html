@@ -22,85 +22,103 @@
   </ion-segment>
   <div [ngSwitch]="newsfeeds"> <!-- to switch between tabs ngSwitch is binded -->
     <ion-list *ngSwitchCase="'post'"><!-- post is added as a string hence two quotes, ngSwitchCase is used as directive so * sign used-->
-      <ion-item class="content-item1" *ngFor="let newsfeed of newsfeedArray">
-        <ion-card class="content-card1">
-          <ion-item class="cardItem">
-            <ion-avatar class="ionAvatar" item-start>
-              <img class="userImg" src="http://res.cloudinary.com/doo4zgtkg/image/upload/v{{newsfeed.user.picVersion}}/{{newsfeed.user.picId}}">
-            </ion-avatar>
-
-            <h2 class="username">
-              {{newsfeed.username}}
-            </h2>
-            <p class="postTime">{{GetPostTime(newsfeed.created)}}</p>
-            <p text-wrap class="postCity" *ngIf="newsfeed.user.city && newsfeed.user.country"> @{{newsfeed.user.city}}, {{newsfeed.user.country}}</p>
-          </ion-item>
-
-          <ion-card-content>
-            <p text-wrap class="post">{{newsfeed.post}}</p>
-          </ion-card-content>
-          <div *ngIf="newsfeed.imgId">
-            <img class="postImage" src="http://res.cloudinary.com/doo4zgtkg/image/upload/v{{newsfeed.imgVersion}}/{{newsfeed.imgId}}">
+      <div *ngIf="newsfeedArray.length == 0">
+        <ion-spinner icon="spiral" class="spinner-energized"></ion-spinner>
+      </div>
+      <div *ngIf="newsfeedArray.length != 0">
+        <ion-item class="content-item1" *ngFor="let newsfeed of newsfeedArray">
+          <div *ngFor="let people of peoples">
+            <div *ngIf="people.username == newsfeed.username">
+              <ion-card class="content-card1">
+                <ion-item class="cardItem" (click)="ViewProfile(people)">
+                  <ion-avatar class="ionAvatar" item-start>
+                    <img class="userImg" src="http://res.cloudinary.com/doo4zgtkg/image/upload/v{{newsfeed.user.picVersion}}/{{newsfeed.user.picId}}">
+                  </ion-avatar>
+  
+                  <h2 class="username">
+                    {{newsfeed.username}}
+                  </h2>
+                  <p class="postTime">{{GetPostTime(newsfeed.created)}}</p>
+                  <p text-wrap class="postCity" *ngIf="newsfeed.user.city && newsfeed.user.country"> @{{newsfeed.user.city}}, {{newsfeed.user.country}}</p>
+                </ion-item>
+  
+                <ion-card-content>
+                  <p text-wrap class="post">{{newsfeed.post}}</p>
+                </ion-card-content>
+                <div *ngIf="newsfeed.imgId">
+                  <img class="postImage" src="http://res.cloudinary.com/doo4zgtkg/image/upload/v{{newsfeed.imgVersion}}/{{newsfeed.imgId}}">
+                </div>
+  
+                <ion-row style="border-top: 1px solid lightgrey; margin-top: 5px;">
+                  <ion-col>
+                    <button ion-button icon-left clear (click)="LikePost(newsfeed)">
+                      <ion-icon name="thumbs-up" [ngClass]="(!CheckInLikesArray(newsfeed.likes, user.username)) ? 'notLiked' : 'liked'"></ion-icon>
+                      <div *ngIf="newsfeed.totalLikes > 0">{{newsfeed.totalLikes}}</div>
+                    </button>
+                  </ion-col>
+                  <ion-col>
+                    <button ion-button icon-left clear (click)="AddComment(newsfeed)">
+                      <ion-icon name="text" [ngClass]="(!CheckInLikesArray(newsfeed.comments, user.username)) ? 'notLiked' : 'liked'"></ion-icon>
+                      <div *ngIf="newsfeed.comments.length > 0">{{newsfeed.comments.length}}</div>
+                    </button>
+                  </ion-col>
+                </ion-row>
+              </ion-card>
+            </div>
           </div>
-
-          <ion-row style="border-top: 1px solid lightgrey; margin-top: 5px;">
-            <ion-col>
-              <button ion-button icon-left clear (click)="LikePost(newsfeed)">
-                <ion-icon name="thumbs-up" [ngClass]="(!CheckInLikesArray(newsfeed.likes, user.username)) ? 'notLiked' : 'liked'"></ion-icon>
-                <div *ngIf="newsfeed.totalLikes > 0">{{newsfeed.totalLikes}}</div>
-              </button>
-            </ion-col>
-            <ion-col>
-              <button ion-button icon-left clear (click)="AddComment(newsfeed)">
-                <ion-icon name="text" [ngClass]="(!CheckInLikesArray(newsfeed.comments, user.username)) ? 'notLiked' : 'liked'"></ion-icon>
-                <div *ngIf="newsfeed.comments.length > 0">{{newsfeed.comments.length}}</div>
-              </button>
-            </ion-col>
-          </ion-row>
-        </ion-card>
-      </ion-item>
+        </ion-item>
+      </div>
     </ion-list>
 
     <ion-list *ngSwitchCase="'top'">
-      <ion-item class="content-item1" *ngFor="let newsfeed of topNewsfeedArray">
-        <ion-card class="content-card1">
-          <ion-item class="cardItem">
-            <ion-avatar class="ionAvatar" item-start>
-              <img class="userImg" src="http://res.cloudinary.com/doo4zgtkg/image/upload/v{{newsfeed.user.picVersion}}/{{newsfeed.user.picId}}">
-            </ion-avatar>
+      <div *ngIf="topNewsfeedArray.length == 0">
+        <ion-spinner icon="spiral" class="spinner-energized"></ion-spinner>
+      </div>
+      <div *ngIf="topNewsfeedArray.length != 0">
+        <ion-item class="content-item1" *ngFor="let newsfeed of topNewsfeedArray">
+          <div *ngFor="let people of peoples">
+            <div *ngIf="people.username == newsfeed.username">
+              <ion-card class="content-card1">
+                <ion-item class="cardItem" (click)="ViewProfile(people)">
+                  <ion-avatar class="ionAvatar" item-start>
+                    <img class="userImg" src="http://res.cloudinary.com/doo4zgtkg/image/upload/v{{newsfeed.user.picVersion}}/{{newsfeed.user.picId}}">
+                  </ion-avatar>
 
-            <h2 class="username">
-              {{newsfeed.username}}
-            </h2>
-            <p class="postTime">{{GetPostTime(newsfeed.created)}}</p>
-            <p text-wrap class="postCity" *ngIf="newsfeed.user.city && newsfeed.user.country">
-              @{{newsfeed.user.city}}, {{newsfeed.user.country}}
-            </p>
-          </ion-item>
+                  <h2 class="username">
+                    {{newsfeed.username}}
+                  </h2>
+                  <p class="postTime">{{GetPostTime(newsfeed.created)}}</p>
+                  <p text-wrap class="postCity" *ngIf="newsfeed.user.city && newsfeed.user.country">
+                    @{{newsfeed.user.city}}, {{newsfeed.user.country}}
+                  </p>
+                </ion-item>
 
-          <ion-card-content>
-            <p text-wrap class="post">{{newsfeed.post}}</p>
-          </ion-card-content>
-          <div style="width: 100%;" *ngIf="newsfeed.imgId">
-            <img class="postImage" src="http://res.cloudinary.com/doo4zgtkg/image/upload/v{{newsfeed.imgVersion}}/{{newsfeed.imgId}}">
+                <ion-card-content>
+                  <p text-wrap class="post">{{newsfeed.post}}</p>
+                </ion-card-content>
+                <div style="width: 100%;" *ngIf="newsfeed.imgId">
+                  <img class="postImage" src="http://res.cloudinary.com/doo4zgtkg/image/upload/v{{newsfeed.imgVersion}}/{{newsfeed.imgId}}">
+                </div>
+
+                <ion-row style="border-top: 1px solid lightgrey; margin-top: 5px;">
+                  <ion-col>
+                    <button ion-button icon-left clear (click)="LikePost(newsfeed)">
+                      <ion-icon name="thumbs-up" [ngClass]="(!CheckInLikesArray(newsfeed.likes, user.username)) ? 'notLiked' : 'liked'"></ion-icon>
+                      <div>{{newsfeed.totalLikes}}</div>
+                    </button>
+                  </ion-col>
+                  <ion-col>
+                    <button ion-button icon-left clear (click)="AddComment(newsfeed)">
+                      <ion-icon name="text" [ngClass]="(!CheckInLikesArray(newsfeed.comments, user.username)) ? 'notLiked' : 'liked'"></ion-icon>
+                      <div>{{newsfeed.comments.length}}</div>
+                    </button>
+                  </ion-col>
+                </ion-row>
+              </ion-card>
+            </div>
           </div>
-
-          <ion-row style="border-top: 1px solid lightgrey; margin-top: 5px;">
-            <ion-col>
-              <button ion-button icon-left clear (click)="LikePost(newsfeed)">
-                <ion-icon name="thumbs-up" [ngClass]="(!CheckInLikesArray(newsfeed.likes, user.username)) ? 'notLiked' : 'liked'"></ion-icon>
-                <div>{{newsfeed.totalLikes}}</div>
-              </button>
-            </ion-col>
-            <ion-col>
-              <button ion-button icon-left clear (click)="AddComment(newsfeed)">
-                <ion-icon name="text" [ngClass]="(!CheckInLikesArray(newsfeed.comments, user.username)) ? 'notLiked' : 'liked'"></ion-icon>
-                <div>{{newsfeed.comments.length}}</div>
-              </button>
-            </ion-col>
-          </ion-row>
-        </ion-card>
-      </ion-item>
+        </ion-item>
+      </div>
     </ion-list>
   </div>
 

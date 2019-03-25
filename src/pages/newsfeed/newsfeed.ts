@@ -30,6 +30,7 @@ export class NewsfeedPage {
   userprofile: string;
   headerImage: any;
   userImages: any;
+  peoples = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public menuCtrl: MenuController, private usersProvider: UsersProvider, private postProvider: PostProvider, private tokenProviders: TokenProvider) {
     this.newsfeeds = 'post';
@@ -41,6 +42,7 @@ export class NewsfeedPage {
     this.tokenProviders.GetPayload().then(value => {
       this.user = value;
       this.token = value;
+      this.GetUsers(this.token._id);
       this.GetUser(this.token._id);
     });
     this.GetAllPosts();
@@ -49,6 +51,7 @@ export class NewsfeedPage {
       this.GetAllPosts();
       this.tokenProviders.GetPayload().then(value => {
         this.token = value;
+        this.GetUsers(this.token._id);
         this.GetUser(this.token._id);
       });
     });
@@ -108,5 +111,25 @@ export class NewsfeedPage {
 
   toggleMenu() {
     this.menuCtrl.toggle();
+  }
+
+  GetUsers(id) {
+    this.usersProvider.GetAllUsers().subscribe(
+      data => {
+        //this line of code removes the user from people list who is viewing the tab.
+        this.peoples = data.result;
+      },
+      err => console.log(err)
+    );
+  }
+
+  ViewProfile(value) {
+    this.navCtrl.push('ViewProfilePage', { userData: value });
+    this.usersProvider.ProfileNotifications(value._id).subscribe(
+      data => {
+        this.socket.emit('refresh', {});
+      },
+      err => console.log(err)
+    );
   }
 }

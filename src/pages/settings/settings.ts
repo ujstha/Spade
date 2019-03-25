@@ -76,6 +76,6 @@ export class SettingsPage {
 
   Logout() {
     this.tokenProvider.DeleteToken();
-    this.navCtrl.setRoot('IndexPage');
+    this.navCtrl.setRoot('LoginPage');
   }
 }

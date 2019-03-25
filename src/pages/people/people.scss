@@ -163,5 +163,11 @@ page-people {
             }
         }
     }
+    .spinner svg {
+        width: 35px;
+        height: 35px; 
+        stroke: #444;
+        fill: red;
+    }
 }
   

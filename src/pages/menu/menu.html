@@ -21,8 +21,8 @@
       </div>
       <div class="col-12">
         <p *ngIf="userData" style="font-family: 'Srisakdi', cursive;">
-          <a (click)="this.navCtrl.push('FollowingPage')" menuClose><strong style="font-family: 'Raleway', sans-serif;">{{userData.following.length}}</strong>  Following</a>&nbsp;&nbsp;
-          <a (click)="this.navCtrl.push('FollowersPage')" menuClose><strong style="font-family: 'Raleway', sans-serif;">{{userData.followers.length}}</strong>  Followers</a>
+          <a (click)="Following()" menuClose><strong style="font-family: 'Raleway', sans-serif;">{{userData.following.length}}</strong>  Following</a>&nbsp;&nbsp;
+          <a (click)="Followers()" menuClose><strong style="font-family: 'Raleway', sans-serif;">{{userData.followers.length}}</strong>  Followers</a>
         </p>
       </div>
       <div style="border-bottom: 1px solid lightgrey; width: 100%;"></div>
@@ -37,6 +37,11 @@
         </div>
       </button>
       <div style="border-bottom: 1px solid lightgrey; width: 100%;"></div>
+      <button ion-item style="padding-top: 12px; padding-bottom: 12px; font-size: 18px; margin-bottom: 8px;" (click)="Logout()" menuClose>
+        <div class="col-12">
+          <ion-icon name="log-out"></ion-icon> &nbsp; Logout
+        </div>
+      </button>
     </div>    
     <!--
     <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">

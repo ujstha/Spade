@@ -5,29 +5,28 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-    <ion-navbar>
-        <ion-segment color="primary" [(ngModel)]="userprofile">
-            <ion-segment-button value="following">
-              Following
-            </ion-segment-button>
-          </ion-segment>
-    </ion-navbar>
-  </ion-header>
-  <!--
-    Generated template for the ProfilePage page.
-  
-    See http://ionicframework.com/docs/components/#navigation for more info on
-    Ionic pages and navigation.
-  -->
-    
-    <ion-content>
-      <div class="userPosts" [ngSwitch]="userprofile">
-      
-        <ion-list *ngSwitchCase="'following'">
+  <ion-navbar>
+    <ion-segment color="primary" [(ngModel)]="userprofile">
+      <ion-segment-button value="following">
+        Following
+      </ion-segment-button>
+    </ion-segment>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="userPosts" [ngSwitch]="userprofile">
+    <ion-list *ngSwitchCase="'following'">
+      <div *ngIf="userData">
+        <div *ngIf="userData.following.length == 0" style="text-align: center;">
+          <h2 style="font-family: 'Raleway', sans-serif;">You have not followed anyone yet.</h2>
+        </div>
+        <div *ngIf="userData.following.length != 0">
           <app-user-friends [friends]="userFriends"></app-user-friends>
-        </ion-list>
-        
+        </div>
       </div>
-    </ion-content>
+    </ion-list>
+  </div>
+</ion-content>
   
   

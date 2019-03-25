@@ -84,8 +84,17 @@ export class MenuPage {
     this.navCtrl.push('SettingsPage');
   }
 
-  Follow() {
+  Following() {
+    this.navCtrl.push('FollowingPage');
+  }
+
+  Followers() {
     this.navCtrl.push('FollowersPage');
+  }
+
+  Logout() {
+    this.tokenProvider.DeleteToken();
+    this.navCtrl.setRoot('LoginPage');
   }
 
   /*
