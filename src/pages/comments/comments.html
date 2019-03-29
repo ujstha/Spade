@@ -25,7 +25,7 @@
           <p class="postTime">
             {{GetCommentTime(comment.createdAt)}}
           </p>
-          <p class="comment">
+          <p class="comment" style="color: black;">
             {{comment.comment}}
           </p>
         </ion-item>
@@ -48,7 +48,7 @@
       <button class="commentButton" ion-button block (click)="AddComment()">
         Add Comment
       </button>
-      <div>
+      <div style="height: 0;">
         <button class="emoji-toggle-button imgBtn" ion-button clear item-end [(emojiPickerIf)]="toggled" [emojiPickerDirection]="direction"
           (emojiPickerSelect)="HandleSelection($event)"></button>
       </div>

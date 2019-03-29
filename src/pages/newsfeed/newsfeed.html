@@ -22,7 +22,7 @@
   </ion-segment>
   <div [ngSwitch]="newsfeeds"> <!-- to switch between tabs ngSwitch is binded -->
     <ion-list *ngSwitchCase="'post'"><!-- post is added as a string hence two quotes, ngSwitchCase is used as directive so * sign used-->
-      <div *ngIf="newsfeedArray.length == 0">
+      <div *ngIf="(newsfeedArray.length == 0) || (peoples.length == 0)">
         <ion-spinner icon="spiral" class="spinner-energized"></ion-spinner>
       </div>
       <div *ngIf="newsfeedArray.length != 0">
@@ -48,18 +48,24 @@
                 <div *ngIf="newsfeed.imgId">
                   <img class="postImage" src="http://res.cloudinary.com/doo4zgtkg/image/upload/v{{newsfeed.imgVersion}}/{{newsfeed.imgId}}">
                 </div>
-  
+                <div class="col-12" *ngIf="(newsfeed.totalLikes > 0) || (newsfeed.comments.length > 0)" style="text-align: left;">
+                  <p style="font-family: 'Raleway', sans-serif;">
+                    <a style="color: grey;  font-size: 15px;" *ngIf="newsfeed.totalLikes > 0">{{newsfeed.totalLikes}} Likes</a>
+                    <a *ngIf="(newsfeed.totalLikes > 0) && (newsfeed.comments.length > 0)"><strong style="font-size: 25px;">&middot;</strong></a>
+                    <a style="color: grey;  font-size: 15px;" *ngIf="newsfeed.comments.length > 0">{{newsfeed.comments.length}} Comments</a>
+                  </p>
+                </div>
                 <ion-row style="border-top: 1px solid lightgrey; margin-top: 5px;">
                   <ion-col>
-                    <button ion-button icon-left clear (click)="LikePost(newsfeed)">
+                    <button ion-button icon-left clear (click)="LikePost(newsfeed)" style="text-transform: capitalize;">
                       <ion-icon name="thumbs-up" [ngClass]="(!CheckInLikesArray(newsfeed.likes, user.username)) ? 'notLiked' : 'liked'"></ion-icon>
-                      <div *ngIf="newsfeed.totalLikes > 0">{{newsfeed.totalLikes}}</div>
+                      Like
                     </button>
                   </ion-col>
                   <ion-col>
-                    <button ion-button icon-left clear (click)="AddComment(newsfeed)">
+                    <button ion-button icon-left clear (click)="AddComment(newsfeed)" style="text-transform: capitalize;">
                       <ion-icon name="text" [ngClass]="(!CheckInLikesArray(newsfeed.comments, user.username)) ? 'notLiked' : 'liked'"></ion-icon>
-                      <div *ngIf="newsfeed.comments.length > 0">{{newsfeed.comments.length}}</div>
+                      Comment
                     </button>
                   </ion-col>
                 </ion-row>
@@ -71,7 +77,7 @@
     </ion-list>
 
     <ion-list *ngSwitchCase="'top'">
-      <div *ngIf="topNewsfeedArray.length == 0">
+      <div *ngIf="(topNewsfeedArray.length == 0) || (peoples.length == 0)">
         <ion-spinner icon="spiral" class="spinner-energized"></ion-spinner>
       </div>
       <div *ngIf="topNewsfeedArray.length != 0">
@@ -99,18 +105,23 @@
                 <div style="width: 100%;" *ngIf="newsfeed.imgId">
                   <img class="postImage" src="http://res.cloudinary.com/doo4zgtkg/image/upload/v{{newsfeed.imgVersion}}/{{newsfeed.imgId}}">
                 </div>
-
+                <div class="col-12" *ngIf="(newsfeed.totalLikes > 0) || (newsfeed.comments.length > 0)" style="text-align: left;">
+                  <p style="font-family: 'Raleway', sans-serif;">
+                    <a style="color: grey;  font-size: 15px;" *ngIf="newsfeed.totalLikes > 0">{{newsfeed.totalLikes}} Likes <strong style="font-size: 25px;">&middot;</strong></a>
+                    <a style="color: grey;  font-size: 15px;" *ngIf="newsfeed.comments.length > 0">{{newsfeed.comments.length}} Comments</a>
+                  </p>
+                </div>
                 <ion-row style="border-top: 1px solid lightgrey; margin-top: 5px;">
                   <ion-col>
-                    <button ion-button icon-left clear (click)="LikePost(newsfeed)">
+                    <button ion-button icon-left clear (click)="LikePost(newsfeed)" style="text-transform: capitalize;">
                       <ion-icon name="thumbs-up" [ngClass]="(!CheckInLikesArray(newsfeed.likes, user.username)) ? 'notLiked' : 'liked'"></ion-icon>
-                      <div>{{newsfeed.totalLikes}}</div>
+                      Like
                     </button>
                   </ion-col>
                   <ion-col>
-                    <button ion-button icon-left clear (click)="AddComment(newsfeed)">
+                    <button ion-button icon-left clear (click)="AddComment(newsfeed)" style="text-transform: capitalize;">
                       <ion-icon name="text" [ngClass]="(!CheckInLikesArray(newsfeed.comments, user.username)) ? 'notLiked' : 'liked'"></ion-icon>
-                      <div>{{newsfeed.comments.length}}</div>
+                      Comment
                     </button>
                   </ion-col>
                 </ion-row>

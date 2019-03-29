@@ -9,7 +9,7 @@ import { Observable } from 'rxjs/Observable';
   and Angular DI.
 */
 
-const BASEURL = 'https://hakunamatata-server.herokuapp.com/api/hakunamatata';
+const BASEURL = 'https://hakunamatata-server.herokuapp.com/api/spade';
 
 @Injectable()
 export class PostProvider {

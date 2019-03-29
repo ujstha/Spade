@@ -88,7 +88,11 @@ export class CommentsPage {
       event.char +
       this.content.slice(this._lastCaretEvent.caretOffset);
     this.eventMock = JSON.stringify(event);
-    this.comment = this.comment + this.content;
+    if(this.comment) {
+      this.comment = this.comment + this.content;
+    } else {
+      this.comment = this.content;
+    }
 
     this.toggled = !this.toggled;
     this.content = '';

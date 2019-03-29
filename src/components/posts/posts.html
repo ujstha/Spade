@@ -22,18 +22,24 @@
       <div style="width: 100%;" *ngIf="newsfeed.postId.imgVersion">
         <img class="postImage" src="http://res.cloudinary.com/doo4zgtkg/image/upload/v{{newsfeed.postId.imgVersion}}/{{newsfeed.postId.imgId}}">
       </div>
-
+      <div class="col-12" *ngIf="(newsfeed.postId.totalLikes > 0) || (newsfeed.postId.comments.length > 0)" style="text-align: left;">
+        <p style="font-family: 'Raleway', sans-serif;">
+          <a style="color: grey;  font-size: 15px;" *ngIf="newsfeed.postId.totalLikes > 0">{{newsfeed.postId.totalLikes}} Likes</a>
+          <a *ngIf="(newsfeed.postId.totalLikes > 0) && (newsfeed.postId.comments.length > 0)"><strong style="font-size: 25px;">&middot;</strong></a>
+          <a style="color: grey;  font-size: 15px;" *ngIf="newsfeed.postId.comments.length > 0">{{newsfeed.postId.comments.length}} Comments</a>
+        </p>
+      </div>
       <ion-row style="border-top: 1px solid lightgrey; margin-top: 5px;">
         <ion-col>
-          <button ion-button icon-left clear>
+          <button ion-button icon-left clear style="text-transform: capitalize;">
             <ion-icon name="thumbs-up"></ion-icon>
-            <div *ngIf="newsfeed.postId.totalLikes > 0">{{newsfeed.postId.totalLikes}}</div>
+            Like
           </button>
         </ion-col>
         <ion-col>
-          <button ion-button icon-left clear>
+          <button ion-button icon-left clear style="text-transform: capitalize;">
             <ion-icon name="text"></ion-icon>
-            <div *ngIf="newsfeed.postId.comments.length > 0">{{newsfeed.postId.comments.length}}</div>
+            Comment
           </button>
         </ion-col>
       </ion-row>

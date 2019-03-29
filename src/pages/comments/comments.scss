@@ -48,6 +48,9 @@ page-comments {
       font-size: 1.7rem !important;
       font-family: 'Raleway', sans-serif;
     }
+    .list {
+      width: 100%;
+    }
   }
   emoji-picker {
     width: 100% !important;
@@ -85,6 +88,8 @@ page-comments {
   .emojiBtn {
     font-size: 20px !important;
   }
-  
+  .emoji-toggle-button.button-md {
+    height: 0 !important;
+  }
 }
   
