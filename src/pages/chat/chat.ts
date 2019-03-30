@@ -213,7 +213,11 @@ export class ChatPage {
       event.char +
       this.content.slice(this._lastCaretEvent.caretOffset);
     this.eventMock = JSON.stringify(event);
-    this.message = this.message + this.content;
+    if(this.message) {
+      this.message = this.message + this.content;
+    } else {
+      this.message = this.content;
+    }
 
     this.toggled = !this.toggled;
     this.content = '';
