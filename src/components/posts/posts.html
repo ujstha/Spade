@@ -22,11 +22,15 @@
       <div style="width: 100%;" *ngIf="newsfeed.postId.imgVersion">
         <img class="postImage" src="http://res.cloudinary.com/doo4zgtkg/image/upload/v{{newsfeed.postId.imgVersion}}/{{newsfeed.postId.imgId}}">
       </div>
-      <div class="col-12" *ngIf="(newsfeed.postId.totalLikes > 0) || (newsfeed.postId.comments.length > 0)" style="text-align: left;">
+      <div class="col-12" *ngIf="(newsfeed.postId.totalLikes > 0) || (newsfeed.postId.comments.length > 0)" style="text-align: left; margin-top: 10px;">
         <p style="font-family: 'Raleway', sans-serif;">
-          <a style="color: grey;  font-size: 15px;" *ngIf="newsfeed.postId.totalLikes > 0">{{newsfeed.postId.totalLikes}} Likes</a>
-          <a *ngIf="(newsfeed.postId.totalLikes > 0) && (newsfeed.postId.comments.length > 0)"><strong style="font-size: 25px;">&middot;</strong></a>
-          <a style="color: grey;  font-size: 15px;" *ngIf="newsfeed.postId.comments.length > 0">{{newsfeed.postId.comments.length}} Comments</a>
+          <a style="color: grey;  font-size: 15px;" *ngIf="newsfeed.postId.totalLikes > 0">{{newsfeed.postId.totalLikes}}</a>
+          <a style="color: grey;  font-size: 15px;" *ngIf="newsfeed.postId.totalLikes == 1">Like</a>
+          <a style="color: grey;  font-size: 15px;" *ngIf="newsfeed.postId.totalLikes > 1">Likes</a>
+          <a *ngIf="(newsfeed.postId.totalLikes > 0) && (newsfeed.postId.comments.length > 0)"><strong style="font-size: 25px; color: grey;"> &middot; </strong></a>
+          <a style="color: grey;  font-size: 15px;" *ngIf="newsfeed.postId.comments.length > 0">{{newsfeed.postId.comments.length}}</a>
+          <a style="color: grey;  font-size: 15px;" *ngIf="newsfeed.postId.comments.length == 1">Comment</a>
+          <a style="color: grey;  font-size: 15px;" *ngIf="newsfeed.postId.comments.length > 1">Comments</a>
         </p>
       </div>
       <ion-row style="border-top: 1px solid lightgrey; margin-top: 5px;">
