@@ -8,6 +8,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Camera } from '@ionic-native/camera';
 import { IonicStorageModule } from '@ionic/storage';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { MyApp } from './app.component';
 
@@ -31,7 +32,13 @@ import { UsersProvider } from '../providers/users/users';
     ReactiveFormsModule,
     EmojiPickerModule.forRoot(),
     IonicStorageModule.forRoot(),
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp, {
+      menuType: 'overlay',
+      iconMode: 'ios',
+      mode: 'md',
+      modalEnter: 'modal-slide-in',
+      modalLeave: 'modal-slide-out'
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -48,6 +55,7 @@ import { UsersProvider } from '../providers/users/users';
     MessageProvider,
     PostProvider,
     UsersProvider,
+    InAppBrowser,
     Camera
   ]
 })

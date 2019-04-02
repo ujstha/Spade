@@ -7,7 +7,9 @@
 <ion-header>
   <div class="menubtn" >
     <img *ngIf="userData" src={{headerImage}} menuToggle style="float: left; background-color: white;">
-    <div style="float: left; margin-top: 5px; margin-left: 15px; font-size: 20px; color: white;">People</div>
+    <div class="search">
+      <ion-searchbar placeholder="Search People" [(ngModel)]="searchTerm" [showCancelButton]="shouldShowCancel" (ionInput)="setFilteredItems()" (ionCancel)="onCancel()"></ion-searchbar>
+    </div>
   </div>
 </ion-header>
 

@@ -12,23 +12,29 @@
           Sp<img src="../../assets/imgs/logo.png" style="width: 40px; height: 40px; vertical-align: middle; filter: brightness(500%)"/>de
         </h1>
       </div>
-      <ion-list style="margin-top: 5% !important">
-        <ion-item>
-          <ion-icon name="md-person" item-left></ion-icon>
-          <ion-input class="input-field" [(ngModel)]="username" name="username" type="text" placeholder="Username"></ion-input>
-        </ion-item>
-  
-        <ion-item>
-          <ion-icon name="md-key" item-left></ion-icon>
-          <ion-input class="input-field" [(ngModel)]="password" name="password" type="password" placeholder="Password"></ion-input>
-        </ion-item>
-  
-        <button ion-button block class="md-raised md-button login-button" (click)="LoginUser()">Login</button>
-  
-        <p class="signin">
-          <button style="margin-top: 20px; text-transform: uppercase;" ion-button block clear color="color3" (click)="SignUpPage()">Create new spade account</button>
-        </p>
-      </ion-list>
+      <form (ngSubmit)="LoginUser()">
+        <ion-list style="margin-top: 5% !important">
+          <ion-item>
+            <ion-icon name="md-person" item-left></ion-icon>
+            <ion-input class="input-field" [(ngModel)]="username" name="username" type="text" placeholder="Username"></ion-input>
+          </ion-item>
+    
+          <ion-item>
+            <ion-icon name="md-key" item-left></ion-icon>
+            <ion-input class="input-field" [(ngModel)]="password" name="password" type="password" placeholder="Password"></ion-input>
+          </ion-item>
+    
+          <button ion-button block class="md-raised md-button login-button" type="submit">Login</button>
+          <!--<button ion-button block style="position: absolute; left: -9999px; width: 1px; height: 1px;"  (click)="LoginUser()">Login</button>
+            <p class="signin">
+              <button style="margin-top: 20px; text-transform: uppercase;" ion-button block clear color="color3" (click)="SignUpPage()">Create new spade account</button>
+            </p>
+          -->
+        </ion-list>
+      </form>
+      <p class="signin">
+        <button style="margin-top: 20px; text-transform: uppercase;" ion-button block clear color="color3" (click)="SignUpPage()">Create new spade account</button>
+      </p>
     </div>
   </ion-slide>
 
@@ -39,26 +45,27 @@
           Sp<img src="../../assets/imgs/logo.png" style="width: 40px; height: 40px; vertical-align: middle; filter: brightness(500%)"/>de
         </h1>
       </div>
-      <ion-list style="margin-top: 5% !important">
-        <ion-item style="position: relative !important;">
-          <ion-icon name="md-person" item-left></ion-icon>
-          <ion-input class="input-field" [(ngModel)]="username" name="username" type="text" placeholder="Username"></ion-input>
-        </ion-item>
-  
-        <ion-item>
-          <ion-icon name="ios-mail-outline" item-left></ion-icon>
-          <ion-input class="input-field" [(ngModel)]="email" name="email" type="email" placeholder="Email"></ion-input>
-        </ion-item>
-  
-        <ion-item>
-          <ion-icon name="md-key" item-left></ion-icon>
-          <ion-input class="input-field" [(ngModel)]="password" name="password" type="password" placeholder="Password"></ion-input>
-        </ion-item>
-  
-        <button ion-button block class="md-raised md-button login-button" (click)="SignUpUser()">Sign Up</button>
-  
-        <button style="margin-top: 20px; text-transform: uppercase;" ion-button inline-block clear color="color3" (click)="LoginPage()">Already have an account ? <br> Log In</button>
-      </ion-list>
+      <form (ngSubmit)="SignUpUser()">
+        <ion-list style="margin-top: 5% !important">
+          <ion-item style="position: relative !important;">
+            <ion-icon name="md-person" item-left></ion-icon>
+            <ion-input class="input-field" [(ngModel)]="username" name="username" type="text" placeholder="Username"></ion-input>
+          </ion-item>
+    
+          <ion-item>
+            <ion-icon name="ios-mail-outline" item-left></ion-icon>
+            <ion-input class="input-field" [(ngModel)]="email" name="email" type="email" placeholder="Email"></ion-input>
+          </ion-item>
+    
+          <ion-item>
+            <ion-icon name="md-key" item-left></ion-icon>
+            <ion-input class="input-field" [(ngModel)]="password" name="password" type="password" placeholder="Password"></ion-input>
+          </ion-item>
+    
+          <button ion-button block class="md-raised md-button login-button" type="submit">Sign Up</button>
+        </ion-list>
+      </form>
+      <button style="margin-top: 20px; text-transform: uppercase;" ion-button inline-block clear color="color3" (click)="LoginPage()">Already have an account ? <br> Log In</button>
     </div>
   </ion-slide>
 </ion-slides>

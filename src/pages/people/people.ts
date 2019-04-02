@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { UsersProvider } from '../../providers/users/users';
 import { TokenProvider } from '../../providers/token/token';
 import io from 'socket.io-client';
@@ -25,8 +25,9 @@ export class PeoplePage {
   userprofile: string;
   headerImage: any;
   userImages: any;
+  searchTerm: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private usersProvider: UsersProvider, private tokenProvider: TokenProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private usersProvider: UsersProvider, private alertCtrl: AlertController, private tokenProvider: TokenProvider) {
     this.socket = io('http://hakunamatata-server.herokuapp.com');
   }
 
@@ -79,5 +80,43 @@ export class PeoplePage {
       },
       err => console.log(err)
     );
+  }
+
+  filterItems(searchTerm){
+    return this.peoples.filter((item) => {
+      return item.username.toLowerCase().includes(searchTerm.toLowerCase());
+    });  
+  }
+
+  setFilteredItems() {
+    if (this.searchTerm != ''){
+      if (this.peoples.length != 0) {
+        this.peoples = this.filterItems(this.searchTerm);
+      }
+      if(this.peoples.length == 0) {
+        let alert = this.alertCtrl.create({
+          title: 'Not Found',
+          message: `${this.searchTerm} not found. Please try again.`,
+          buttons: [
+            {
+              text: 'Try Again',
+              handler: () => {
+                this.GetUsers(this.token.username);
+                this.searchTerm = '';
+              }
+            }
+          ]
+        });
+        alert.present();
+      }
+    } else {
+      this.usersProvider.GetAllUsers().subscribe(
+        data => {
+          _.remove(data.result, { username: name }); //this line of code removes the user from people list who is viewing the tab.
+          this.peoples = data.result;
+        },
+        err => console.log(err)
+      );
+    }
   }
 }

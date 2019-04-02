@@ -6,7 +6,7 @@
 -->
 
 <ion-tabs>
-  <ion-tab [root]="tab1" tabIcon="globe" (ionSelect)="ClickTab()"></ion-tab>
+  <ion-tab [root]="tab1" tabIcon="md-globe" (ionSelect)="ClickTab()"></ion-tab>
   <ion-tab [root]="tab2" tabIcon="chatbubbles" [tabBadge]="messageCount > 0 ? messageCount : null" (ionSelect)="ClickTab()"></ion-tab>
   <ion-tab tabIcon="add-circle" (ionSelect)="PostModal()"></ion-tab>
   <ion-tab [root]="tab4" tabIcon="notifications-outline" [tabBadge]="count > 0 ? count : null" (ionSelect)="ClickTab()"></ion-tab>

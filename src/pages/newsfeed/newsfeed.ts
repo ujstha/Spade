@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, AlertController } from 'ionic-angular';
 import { PostProvider } from '../../providers/post/post';
 import moment from 'moment';
 import { TokenProvider } from '../../providers/token/token';
 import _ from 'lodash';
 import io from 'socket.io-client';
 import { UsersProvider } from '../../providers/users/users';
+import 'rxjs/add/operator/map';
 
 /**
  * Generated class for the NewsfeedPage page.
@@ -31,8 +32,9 @@ export class NewsfeedPage {
   headerImage: any;
   userImages: any;
   peoples = [];
+  searchTerm: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public menuCtrl: MenuController, private usersProvider: UsersProvider, private postProvider: PostProvider, private tokenProviders: TokenProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public menuCtrl: MenuController, private alertCtrl: AlertController, private usersProvider: UsersProvider, private postProvider: PostProvider, private tokenProviders: TokenProvider) {
     this.newsfeeds = 'post';
     this.socket = io('http://hakunamatata-server.herokuapp.com');
   }
@@ -131,5 +133,41 @@ export class NewsfeedPage {
       },
       err => console.log(err)
     );
+  }
+
+  filterItems(searchTerm){
+    return this.newsfeedArray.filter((item) => {
+      return item.username.toLowerCase().includes(searchTerm.toLowerCase());
+    });  
+  }
+
+  setFilteredItems() {
+    if (this.searchTerm != ''){
+      if (this.newsfeedArray.length != 0) {
+        this.newsfeedArray = this.filterItems(this.searchTerm);
+      }
+      if(this.newsfeedArray.length == 0) {
+        let alert = this.alertCtrl.create({
+          title: 'Not Found',
+          message: `${this.searchTerm} not found. Please try again.`,
+          buttons: [
+            {
+              text: 'Try Again',
+              handler: () => {
+                this.GetAllPosts();
+                this.searchTerm = '';
+              }
+            }
+          ]
+        });
+        alert.present();
+      }
+    } else {
+      this.postProvider.GetAllPosts().subscribe(
+        data => {
+          this.newsfeedArray = data.posts;
+          this.topNewsfeedArray = data.top;
+        });
+    }
   }
 }
