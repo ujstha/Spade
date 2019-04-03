@@ -9,6 +9,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Camera } from '@ionic-native/camera';
 import { IonicStorageModule } from '@ionic/storage';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { Firebase } from '@ionic-native/firebase';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 import { MyApp } from './app.component';
 
@@ -19,6 +22,15 @@ import { MessageProvider } from '../providers/message/message';
 import { PostProvider } from '../providers/post/post';
 import { UsersProvider } from '../providers/users/users';
 //import { IndexPage } from '../pages/index/index';
+
+const config = {
+  apiKey: "AIzaSyBywtXzNEnaKv2AYX9fGY2EYW0TuU6qWas",
+  authDomain: "spade-93c77.firebaseapp.com",
+  databaseURL: "https://spade-93c77.firebaseio.com",
+  projectId: "spade-93c77",
+  storageBucket: "spade-93c77.appspot.com",
+  messagingSenderId: "999776415645"
+}
 
 @NgModule({
   declarations: [
@@ -32,6 +44,8 @@ import { UsersProvider } from '../providers/users/users';
     ReactiveFormsModule,
     EmojiPickerModule.forRoot(),
     IonicStorageModule.forRoot(),
+    AngularFireModule.initializeApp(config), 
+    AngularFirestoreModule,
     IonicModule.forRoot(MyApp, {
       menuType: 'overlay',
       iconMode: 'ios',
@@ -56,6 +70,7 @@ import { UsersProvider } from '../providers/users/users';
     PostProvider,
     UsersProvider,
     InAppBrowser,
+    Firebase,
     Camera
   ]
 })

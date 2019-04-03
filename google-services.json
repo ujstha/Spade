@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "999776415645",
+    "firebase_url": "https://spade-93c77.firebaseio.com",
+    "project_id": "spade-93c77",
+    "storage_bucket": "spade-93c77.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:999776415645:android:764d2cb7da3280eb",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvSXdgsj4bKtaTQ5yf63-D99ZUiAdQlok"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "999776415645-iil7le4dthkpt8kvh644it9i4brfo2lc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
